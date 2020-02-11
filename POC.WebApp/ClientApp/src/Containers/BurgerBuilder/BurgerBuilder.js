@@ -48,22 +48,32 @@ const BurgerBuilder = () => {
 
             setIngredients(updatedIngredients);
             setTotalPrice((oldPrice) => oldPrice + (INGREDIENT_PRICES[type] * factor));
+
+            // check if purchasable
+            updatePurchaseState();
         }
     }
 
     // Check if being able to purchase the burger.
     const updatePurchaseState = () => {
-
+        const cloned = ingredients.clone();
+        const sum = Object.keys(cloned)
+            .map(key => {
+                return cloned[key];
+            })
+            .reduce((sum, el) => sum + el, 0);
+        setPurchasable(() => sum > 0);
     };
 
     return (
         <Fragment>
-            <Burger ingredients={ingredients} />
+            <Burger ingredients={ ingredients } />
             <BuildControls
-                add={addIngredientHandler}
-                remove={removeIngredientHandler}
-                disabled={disableInfo}
-                price={totalPrice} />
+                add={ addIngredientHandler }
+                remove={ removeIngredientHandler }
+                disabled={ disableInfo }
+                price={ totalPrice }
+                purchasable={ purchasable } />
         </Fragment>
     );
 };
