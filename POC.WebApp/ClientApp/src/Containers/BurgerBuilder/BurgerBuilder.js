@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import Burger from '../../Components/Burger/Burger';
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls';
+import Modal from '../../Components/UI/Modal/Modal';
+import OrderSummery from '../../Components/Burger/OrderSummery/OrderSummery';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -22,6 +24,7 @@ const BurgerBuilder = () => {
     });
     const [totalPrice, setTotalPrice] = useState(4);
     const [purchasable, setPurchasable] = useState(false);
+    const [purchasing, setPurchasing] = useState(false);
 
     // Disable build controls info
     const disableInfo = ingredients.clone();
@@ -47,33 +50,47 @@ const BurgerBuilder = () => {
             updatedIngredients[type] = updatedCount;
 
             setIngredients(updatedIngredients);
+
             setTotalPrice((oldPrice) => oldPrice + (INGREDIENT_PRICES[type] * factor));
 
             // check if purchasable
-            updatePurchaseState();
+            updatePurchaseState(updatedIngredients);
         }
     }
 
     // Check if being able to purchase the burger.
-    const updatePurchaseState = () => {
-        const cloned = ingredients.clone();
-        const sum = Object.keys(cloned)
+    const updatePurchaseState = (ingredients) => {
+        const sum = Object.keys(ingredients)
             .map(key => {
-                return cloned[key];
+                return ingredients[key];
             })
             .reduce((sum, el) => sum + el, 0);
         setPurchasable(() => sum > 0);
     };
 
+    const purchaseHandler = () => {
+        setPurchasing(true);
+    }
+
+    const closeModalHandler = () => {
+        setPurchasing(false);
+    }
+
     return (
         <Fragment>
+            <Modal show={ purchasing }
+                close={ closeModalHandler }>
+                <OrderSummery ingredients={ ingredients }
+                    close={ closeModalHandler } />
+            </Modal>
             <Burger ingredients={ ingredients } />
             <BuildControls
                 add={ addIngredientHandler }
                 remove={ removeIngredientHandler }
                 disabled={ disableInfo }
                 price={ totalPrice }
-                purchasable={ purchasable } />
+                purchasable={ purchasable }
+                order={ purchaseHandler } />
         </Fragment>
     );
 };
