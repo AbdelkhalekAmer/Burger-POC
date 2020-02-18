@@ -1,6 +1,14 @@
 import React, { Fragment } from 'react';
-import classes from './NavigationItems.module.css';
+import classes from './NavigationItem.module.css';
 
-const NavigationItem = props => ();
+const NavigationItem = props => (
+    <li className={ classes.NavigationItem }>
+        <a
+            href={ props.link }
+            className={ props.active ? classes.active : null }>
+            { props.children }
+        </a>
+    </li >
+);
 
 export default NavigationItem;
