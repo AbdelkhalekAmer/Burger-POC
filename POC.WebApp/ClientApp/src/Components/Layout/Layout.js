@@ -7,22 +7,15 @@ const Layout = props => {
     const [showSideDrawer, setShowSideDrawer] = useState(true);
 
     const toggleShowSideDawer = () => {
-
-        if (showSideDrawer) {
-            setShowSideDrawer(false);
-        }
-        else {
-            setShowSideDrawer(true);
-        }
-
+        setShowSideDrawer((prevShowSideDrawer) => !prevShowSideDrawer);
     };
 
     return (
         <Fragment>
-            <Toolbar />
+            <Toolbar toggle={ toggleShowSideDawer } />
             <SideDrawer
                 show={ showSideDrawer }
-                close={ toggleShowSideDawer } />
+                toggle={ toggleShowSideDawer } />
             <main className={ classes.Content }>
                 { props.children }
             </main>
