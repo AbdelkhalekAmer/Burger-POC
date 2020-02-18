@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import toUpperFirstLetter from '../../../Helpers/StringFormatter';
 import Button from '../../UI/Button/Button';
 
 const OrderSummery = (props) => {
@@ -7,7 +6,7 @@ const OrderSummery = (props) => {
     const ingredientSummery = Object.keys(props.ingredients)
         .map((key) =>
             <li key={ key }>
-                <span>{ toUpperFirstLetter(key) }</span>: { props.ingredients[key] }
+                <span>{ key }</span>: { props.ingredients[key] }
             </li>);
 
     return (
