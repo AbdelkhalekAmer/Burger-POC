@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import toUpperFirstLetter from '../../../Helpers/StringFormatter';
+import Button from '../../UI/Button/Button';
 
 const OrderSummery = (props) => {
 
@@ -16,13 +17,18 @@ const OrderSummery = (props) => {
             <ul>
                 { ingredientSummery }
             </ul>
+            <p><strong>Total Price: { props.totalPrice.toFixed(2) }</strong></p>
             <p>continue to checkout?</p>
-            <button onClick={ props.close }>
-                Cancel
-            </button>
-            <button>
-                Continue
-            </button>
+            <Button
+                clicked={ props.close }
+                btnType='Danger'>
+                CANCEL
+            </Button>
+            <Button
+                clicked={ props.continue }
+                btnType='Success'>
+                CONTINUE
+            </Button>
         </Fragment>
     );
 };

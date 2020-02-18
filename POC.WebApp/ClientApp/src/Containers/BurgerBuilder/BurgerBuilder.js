@@ -76,12 +76,18 @@ const BurgerBuilder = () => {
         setPurchasing(false);
     }
 
+    const continueModalHandler = () => {
+        alert('Purchase');
+    };
+
     return (
         <Fragment>
             <Modal show={ purchasing }
                 close={ closeModalHandler }>
                 <OrderSummery ingredients={ ingredients }
-                    close={ closeModalHandler } />
+                    totalPrice={ totalPrice }
+                    close={ closeModalHandler }
+                    continue={ continueModalHandler } />
             </Modal>
             <Burger ingredients={ ingredients } />
             <BuildControls
