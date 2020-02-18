@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Layout from '../../Components/Layout/Layout';
+import Layout from '../../HOC/Layout/Layout';
 import BurgerBuilder from '../BurgerBuilder/BurgerBuilder';
 
 const App = () => {

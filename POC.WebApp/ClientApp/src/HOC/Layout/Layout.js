@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import classes from './Layout.module.css';
-import Toolbar from '../Navigation/Toolbar/Toolbar';
-import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
+import Toolbar from '../../Components/Navigation/Toolbar/Toolbar';
+import SideDrawer from '../../Components/Navigation/SideDrawer/SideDrawer';
 
 const Layout = props => {
     const [showSideDrawer, setShowSideDrawer] = useState(true);

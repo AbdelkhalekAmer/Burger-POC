@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './Containers/AppContainer/App';
 import * as serviceWorker from './serviceWorker';
-import ObjectPrototypeHelper from './Helpers/ObjectPrototype';
-
-ObjectPrototypeHelper();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

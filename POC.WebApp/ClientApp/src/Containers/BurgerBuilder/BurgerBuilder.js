@@ -27,7 +27,7 @@ const BurgerBuilder = () => {
     const [purchasing, setPurchasing] = useState(false);
 
     // Disable build controls info
-    const disableInfo = ingredients.clone();
+    const disableInfo = { ...ingredients };
     for (var key in disableInfo) {
         disableInfo[key] = disableInfo[key] <= 0;
     }
@@ -46,7 +46,7 @@ const BurgerBuilder = () => {
         if (updatedCount >= 0) {
 
             // Update changes through the factor...
-            const updatedIngredients = ingredients.clone();
+            const updatedIngredients = { ...ingredients };
             updatedIngredients[type] = updatedCount;
 
             setIngredients(updatedIngredients);
